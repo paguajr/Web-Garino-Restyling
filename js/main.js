@@ -34,22 +34,9 @@
   window.addEventListener("resize", progress);
   progress();
 
-  /* Hero 3D: solo escritorio; con movimiento reducido, una sola imagen estática */
-  function load3d(reduced) {
-    var hero = document.querySelector(".hero[data-3d]");
-    if (!hero || !window.matchMedia("(min-width: 860px)").matches) return;
-    var c = document.createElement("canvas");
-    if (!(c.getContext("webgl2") || c.getContext("webgl"))) return;
-    var go = function () {
-      import("./hero3d.js").then(function (m) { m.init(hero, { reduce: reduced }); }).catch(function () {});
-    };
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
-  }
-
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduce || !window.gsap || !window.ScrollTrigger) {
     root.classList.remove("motion");
-    if (reduce) load3d(true);
     return;
   }
 
@@ -165,5 +152,4 @@
   });
 
   window.addEventListener("load", function () { window.ScrollTrigger.refresh(); });
-  load3d(false);
 })();
