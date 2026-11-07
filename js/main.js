@@ -82,31 +82,33 @@
 
   /* Texto que se revela al leer: cada palabra sube y pasa de bruma a azul marino con el scroll.
      En escritorio la sección se fija mientras se lee. */
-  var navy = getComputedStyle(root).getPropertyValue("--navy").trim() || "#002b5c";
   var mmText = gsap.matchMedia();
   document.querySelectorAll(".statement").forEach(function (el) {
     var text = el.textContent.trim().replace(/\s+/g, " ");
     el.setAttribute("aria-label", text);
     el.innerHTML = text
       .split(" ")
-      .map(function (w) { return '<span class="w" aria-hidden="true">' + w + "</span>"; })
+      .map(function (w) { return '<span class="w" aria-hidden="true"><span class="w__base">' + w + '</span><span class="w__on">' + w + "</span></span>"; })
       .join(" ");
     var words = el.querySelectorAll(".w");
+    var ons = el.querySelectorAll(".w__on");
     var section = el.closest("section");
     mmText.add("(min-width: 860px)", function () {
       section.classList.add("section--pin");
-      gsap.fromTo(words, { color: getComputedStyle(words[0]).color, y: 22 }, {
-        color: navy, y: 0, ease: "none", stagger: 0.14,
+      var tl = gsap.timeline({
+        defaults: { ease: "none" },
         scrollTrigger: {
           trigger: section, start: function () { return "top " + headerH() + "px"; },
           end: "+=110%", pin: true, scrub: 0.5, anticipatePin: 1, invalidateOnRefresh: true
         }
       });
+      tl.fromTo(words, { y: 22 }, { y: 0, stagger: 0.14 }, 0)
+        .fromTo(ons, { opacity: 0 }, { opacity: 1, stagger: 0.14 }, 0);
       return function () { section.classList.remove("section--pin"); };
     });
     mmText.add("(max-width: 859px)", function () {
-      gsap.to(words, {
-        color: navy, ease: "none", stagger: 0.12,
+      gsap.to(ons, {
+        opacity: 1, ease: "none", stagger: 0.12,
         scrollTrigger: { trigger: el, start: "top 82%", end: "bottom 62%", scrub: 0.4 }
       });
     });
@@ -173,10 +175,17 @@
     });
   });
 
+  /* El "1920" termina de imprimirse: pasa a una sola capa */
+  var lastInk = document.querySelector(".hero__year .ink--d");
+  if (lastInk) lastInk.addEventListener("animationend", function (e) {
+    if (e.animationName === "ink-in") lastInk.parentNode.classList.add("ink-done");
+  });
+
   /* Héroe: al salir, cada capa de texto se va a distinta velocidad; el "1920" crece */
   var hero = document.querySelector(".hero");
   if (hero) {
-    var heroST = { trigger: hero, start: function () { return "top " + headerH() + "px"; }, end: "bottom top", scrub: true };
+    var heroST = { trigger: hero, start: function () { return "top " + headerH() + "px"; }, end: "bottom top", scrub: true,
+      onToggle: function (self) { hero.classList.toggle("hero--leaving", self.isActive); } };
     [["h1", { yPercent: -28, opacity: 0.1 }], [".lead", { yPercent: -60 }], [".doors, .closing__actions", { yPercent: -35 }],
      [".hero__year", { scale: 1.18, transformOrigin: "50% 40%" }]].forEach(function (t) {
       var target = hero.querySelector(t[0]);
@@ -208,6 +217,8 @@
       var track = sec.querySelector(".hscroll__track");
       if (!track) return;
       var panels = gsap.utils.toArray(".panel", track);
+      var barEl = sec.querySelector(".hscroll__bar");           // la variable vive en la barra, no en toda la sección
+      var skewTo = gsap.quickTo(panels, "skewX", { duration: 0.35, ease: "power3.out" });
       var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth + 0); };
       var run = gsap.to(track, {
         x: function () { return -dist(); },
@@ -221,14 +232,13 @@
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: function (self) {
-            sec.style.setProperty("--hp", self.progress.toFixed(4));
-            var sk = clamp(-6, 6, self.getVelocity() / -420);
-            gsap.to(panels, { skewX: sk, duration: 0.35, ease: "power3.out", overwrite: "auto" });
+            if (barEl) barEl.style.setProperty("--hp", self.progress.toFixed(4));
+            skewTo(clamp(-6, 6, self.getVelocity() / -420));
           }
         }
       });
       // al detenerse, los paneles se enderezan
-      var settle = function () { gsap.to(panels, { skewX: 0, duration: 0.7, ease: ease, overwrite: "auto" }); };
+      var settle = function () { skewTo(0); };
       window.ScrollTrigger.addEventListener("scrollEnd", settle);
       // cada panel entra desde la derecha con su foto descubriéndose
       panels.forEach(function (p) {
