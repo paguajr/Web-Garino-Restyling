@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-11-07T00:51:07.063Z",
+        "reason": "user confirmed: brief mandates Montserrat site-wide, self-hosted"
+      }
+    ]
+  }
+}

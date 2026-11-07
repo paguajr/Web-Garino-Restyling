@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T00:00:00Z",
+  "title": "Design System: Garino Hnos. S.A.",
+  "extensions": {
+    "colorMeta": {
+      "navy": { "role": "primary", "displayName": "Press Navy", "canonical": "#002b5c", "tonalRamp": ["#00122a", "#001c3b", "#002b5c", "#33557f", "#667f9d", "#99aabe", "#ccd4de", "#e6eaef"] },
+      "blue": { "role": "primary", "displayName": "Proof Blue", "canonical": "#0065a4", "tonalRamp": ["#00203a", "#003a64", "#0065a4", "#3384b6", "#66a3c8", "#99c1db", "#cce0ed", "#e6f0f6"] },
+      "slate": { "role": "secondary", "displayName": "Slate Ink", "canonical": "#536283", "tonalRamp": ["#1d222e", "#343c52", "#536283", "#7581a0", "#97a1b8", "#bac0cf", "#dcdfe7", "#eceef3"] },
+      "mist": { "role": "neutral", "displayName": "Mist", "canonical": "#c6cbd6", "tonalRamp": ["#4a4f5c", "#6c7282", "#8c93a3", "#a9afbd", "#c6cbd6", "#d7dae2", "#e6e8ed", "#f3f4f7"] },
+      "ink": { "role": "neutral", "displayName": "Body Grey", "canonical": "#555555", "tonalRamp": ["#1a1a1a", "#333333", "#555555", "#777777", "#999999", "#bbbbbb", "#dddddd", "#f0f0f0"] },
+      "white": { "role": "neutral", "displayName": "White", "canonical": "#ffffff", "tonalRamp": ["#ffffff"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#f4f5f8", "tonalRamp": ["#f4f5f8"] },
+      "on-navy": { "role": "neutral", "displayName": "On-Navy Tint", "canonical": "#e0e6ee", "tonalRamp": ["#e0e6ee"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "h1 in the hero, max 12ch." },
+      "headline": { "displayName": "Headline", "purpose": "h2 section and closing titles." },
+      "title": { "displayName": "Title", "purpose": "h3 row, spec and list headings." },
+      "statement": { "displayName": "Statement", "purpose": "The single scroll-revealed paragraph." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, max 66ch." },
+      "label": { "displayName": "Label", "purpose": "Uppercase controls: nav, buttons, CTAs." }
+    },
+    "shadows": [
+      { "name": "wedge-hairline", "value": "inset 0 0 0 1px rgba(255,255,255,0.35)", "purpose": "Keeps the navy wedge step visible on navy; the only shadow in the system." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Underline, arrow and drawer transitions (0.3-0.5s)." },
+      { "name": "gsap-ease", "value": "expo.out", "purpose": "Word and block reveals, 1.1s, 36px rise; all disabled under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "959px" },
+      { "name": "nav-drawer", "value": "859px" },
+      { "name": "mobile", "value": "599px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Proof Blue action button, used for Consultar CFE.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Consultar CFE <svg class=\"ds-i\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 12h17M14 5.5 20.5 12 14 18.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 22px; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; background: #0065a4; color: #fff; border: 2px solid #0065a4; border-radius: 2px; transition: background 0.3s, border-color 0.3s; } .ds-btn .ds-i { width: 1.1em; height: 1.1em; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { background: #002b5c; border-color: #002b5c; } .ds-btn:hover .ds-i { transform: translateX(4px); } .ds-btn:focus-visible { outline: 3px solid #0065a4; outline-offset: 3px; }"
+    },
+    {
+      "name": "Light Button on Navy",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "White button for navy grounds.",
+      "html": "<div class=\"ds-navy\"><a class=\"ds-btn-light\" href=\"#\">Consultar CFE</a></div>",
+      "css": ".ds-navy { background: #002b5c; padding: 24px; } .ds-btn-light { display: inline-flex; padding: 14px 22px; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; background: #fff; color: #002b5c; border: 2px solid #fff; border-radius: 2px; transition: background 0.3s, border-color 0.3s; } .ds-btn-light:hover { background: #c6cbd6; border-color: #c6cbd6; } .ds-btn-light:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button on Navy",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action on navy (Contacto).",
+      "html": "<div class=\"ds-navy\"><a class=\"ds-btn-ghost\" href=\"#\">Contacto</a></div>",
+      "css": ".ds-navy { background: #002b5c; padding: 24px; } .ds-btn-ghost { display: inline-flex; padding: 14px 22px; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.55); border-radius: 2px; transition: background 0.3s, color 0.3s; } .ds-btn-ghost:hover { background: #fff; color: #002b5c; border-color: #fff; } .ds-btn-ghost:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "button-primary",
+      "description": "Uppercase label with a Proof Blue underline that grows from the left.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Inicio</a><a href=\"#\">Servicios gráficos</a><a href=\"#\">Servicios informáticos</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 32px; background: #fff; padding: 16px 24px; } .ds-nav a { position: relative; padding: 8px 0; font-family: Montserrat, system-ui, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; color: #002b5c; } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; background: #0065a4; transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); } .ds-nav a:hover::after, .ds-nav a[aria-current='page']::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 3px solid #0065a4; outline-offset: 3px; }"
+    },
+    {
+      "name": "Tint Wedge",
+      "kind": "custom",
+      "refersTo": "slate",
+      "description": "Six-step divider built from the palette; signature element.",
+      "html": "<div class=\"ds-wedge\"><i></i><i></i><i></i><i></i><i></i><i></i></div>",
+      "css": ".ds-wedge { display: flex; height: 12px; width: 100%; max-width: 420px; } .ds-wedge i { flex: 1; display: block; } .ds-wedge i:nth-child(1) { background: #fff; box-shadow: inset 0 0 0 1px #c6cbd6; } .ds-wedge i:nth-child(2) { background: #c6cbd6; } .ds-wedge i:nth-child(3) { background: #536283; } .ds-wedge i:nth-child(4) { background: #0065a4; } .ds-wedge i:nth-child(5) { background: #002b5c; } .ds-wedge i:nth-child(6) { background: #555; }"
+    },
+    {
+      "name": "Crop-mark Sheet",
+      "kind": "custom",
+      "refersTo": "navy",
+      "description": "Navy sheet framed by four L-shaped crop marks.",
+      "html": "<section class=\"ds-sheet\"><span class=\"ds-marks\"></span><h2>Alta especialización</h2></section>",
+      "css": ".ds-sheet { position: relative; isolation: isolate; background: #002b5c; color: #fff; padding: 72px 48px; font-family: Montserrat, system-ui, sans-serif; } .ds-sheet h2 { margin: 0; font-weight: 800; font-size: 2.4rem; line-height: 1.04; letter-spacing: -0.03em; color: #fff; } .ds-marks { position: absolute; inset: 20px; pointer-events: none; color: rgba(255,255,255,0.55); background: linear-gradient(currentColor,currentColor) 0 0/26px 1px no-repeat, linear-gradient(currentColor,currentColor) 0 0/1px 26px no-repeat, linear-gradient(currentColor,currentColor) 100% 0/26px 1px no-repeat, linear-gradient(currentColor,currentColor) 100% 0/1px 26px no-repeat, linear-gradient(currentColor,currentColor) 0 100%/26px 1px no-repeat, linear-gradient(currentColor,currentColor) 0 100%/1px 26px no-repeat, linear-gradient(currentColor,currentColor) 100% 100%/26px 1px no-repeat, linear-gradient(currentColor,currentColor) 100% 100%/1px 26px no-repeat; }"
+    },
+    {
+      "name": "Rows List",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Hairline-separated typographic list used in place of cards.",
+      "html": "<ul class=\"ds-rows\"><li><h3>Etiquetas funcionales</h3><p>Texto descriptivo del servicio.</p></li><li><h3>Documentos de seguridad</h3><p>Texto descriptivo del servicio.</p></li></ul>",
+      "css": ".ds-rows { list-style: none; margin: 0; padding: 0; font-family: Montserrat, system-ui, sans-serif; color: #555; } .ds-rows > li { display: grid; grid-template-columns: 4fr 7fr; gap: 32px; padding: 28px 0; border-top: 1px solid rgba(83,98,131,0.35); } .ds-rows > li:last-child { border-bottom: 1px solid rgba(83,98,131,0.35); } .ds-rows h3 { margin: 0; font-size: 1.4rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; color: #002b5c; } .ds-rows p { margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Press Sheet",
+    "overview": "The site is a printed sheet on the proofing table. A print house proves its precision with the marks printers use to prove alignment, so crop marks, a registration target and a tint-step wedge carry the identity instead of imagery, gradients or feature cards. Navy fields own whole regions; white and pale paper sheets alternate with them. The result is calm, exact and institutional, with scale supplied by very large, tightly set Montserrat.\n\nDensity is generous: sections breathe at 96-190px, content sits in a 1480px column, and structure comes from hairline rules and typographic lists rather than boxes. Motion follows print logic (words lift into place, a sheet slides sideways, a target turns with scroll) and is entirely removable.",
+    "keyCharacteristics": [
+      "Five-colour palette on white, nothing else; tints come from opacity or `color-mix`.",
+      "Crop marks at section corners and the tint wedge are the signature; the page is recognisable with content removed.",
+      "Montserrat 800 display set tight, 400-500 body.",
+      "Flat: no shadows, no radii beyond 2px.",
+      "Hairline rules and lists replace cards."
+    ],
+    "rules": [
+      { "name": "The Five-Ink Rule", "body": "Only the five palette inks plus white. Any other tone must be a mix or opacity of those, never a new hue.", "section": "colors" },
+      { "name": "The One Action Rule", "body": "Proof Blue marks what can be acted on or what is progress. It is not used as decoration.", "section": "colors" },
+      { "name": "The Tight Heavy Rule", "body": "Display sizes are 800 with negative tracking; body never goes below 400.", "section": "typography" },
+      { "name": "The Flat Sheet Rule", "body": "A printed sheet has no elevation. Separate with ground colour or a 1px rule, never a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do open each major region with a full sheet: navy, white or paper, with crop marks at its corners.",
+      "Do keep colour to Press Navy, Proof Blue, Slate Ink, Mist, Body Grey on white.",
+      "Do build structure with 1px hairlines and typographic lists.",
+      "Do set headlines in Montserrat 800 with negative tracking; keep body at 17px, 1.65, max 66ch.",
+      "Do keep every animation optional: content is fully visible with no JS or with reduced motion.",
+      "Do use Proof Blue only for actionable or progress elements."
+    ],
+    "donts": [
+      "Don't add gradients, drop shadows, or rounded cards.",
+      "Don't introduce a second typeface or a sixth hue.",
+      "Don't replace the arrow SVG with glyph characters or an icon font.",
+      "Don't add decorative lead-in labels above headings; labels are for controls and footer headings.",
+      "Don't apply crop marks and the registration target to small components; they belong to sheet scale."
+    ]
+  }
+}
