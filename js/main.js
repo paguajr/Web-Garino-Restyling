@@ -177,10 +177,11 @@
   var hero = document.querySelector(".hero");
   if (hero) {
     var heroST = { trigger: hero, start: function () { return "top " + headerH() + "px"; }, end: "bottom top", scrub: true };
-    gsap.to(hero.querySelector("h1"), { yPercent: -28, opacity: 0.1, ease: "none", scrollTrigger: heroST });
-    gsap.to(hero.querySelector(".lead"), { yPercent: -60, ease: "none", scrollTrigger: heroST });
-    gsap.to(hero.querySelector(".doors"), { yPercent: -35, ease: "none", scrollTrigger: heroST });
-    gsap.to(hero.querySelector(".hero__year"), { scale: 1.18, transformOrigin: "50% 40%", ease: "none", scrollTrigger: heroST });
+    [["h1", { yPercent: -28, opacity: 0.1 }], [".lead", { yPercent: -60 }], [".doors, .closing__actions", { yPercent: -35 }],
+     [".hero__year", { scale: 1.18, transformOrigin: "50% 40%" }]].forEach(function (t) {
+      var target = hero.querySelector(t[0]);
+      if (target) gsap.to(target, Object.assign({ ease: "none", scrollTrigger: heroST }, t[1]));
+    });
   }
 
   /* Paralaje: el pliego se desplaza a otra velocidad que el texto */
