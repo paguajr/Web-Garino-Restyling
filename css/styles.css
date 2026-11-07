@@ -356,3 +356,9 @@ html:not(.motion) .hero__year .ink--a, html:not(.motion) .hero__year .ink--b, ht
   .panel ul li { padding-block: clamp(5px, 1.2svh, 10px); font-size: clamp(0.85rem, 2.1svh, 1.05rem); }
   .panel__link { margin-top: clamp(10px, 2svh, 20px); }
 }
+
+/* Móvil y tableta: el "1920" va encima del titular, no detrás */
+@media (max-width: 859px) {
+  .hero { flex-direction: column; align-items: stretch; justify-content: flex-end; }
+  .hero__year { position: relative; right: auto; top: auto; align-self: flex-start; margin: 0 0 clamp(20px, 5vw, 44px) var(--gutter); font-size: clamp(6.5rem, 29vw, 15rem); }
+}
